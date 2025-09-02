@@ -4,16 +4,11 @@
 It improves readability and makes scanning text easier.
 
 
-
-
 ## ✨ Features
 - Automatically bolds the first letter of each word on every webpage
 - Toggle **ON/OFF** with a single click on the extension icon
 - Lightweight and fast
 - Open-source and free to use
-
-
-
 
 
 ## 📦 Installation
@@ -27,30 +22,14 @@ It improves readability and makes scanning text easier.
 5. Select the project folder to install.
 
 
-
-
-
 ## 🔧 Usage
 - Click the **extension icon** on any webpage to toggle Boldify on or off.
 - When enabled, the badge will display **ON**.
 
 
-
-
-
-## 🛠️ Tech Stack
-- **Manifest V3**
-- **Vanilla JavaScript**
-- **Chrome Extensions API**
-
-
-
-
-
 ## 📄 License
 This project is licensed under the **MIT License**.  
 All icons and code are **AI-generated or self-made** and are free to use.
-
 
 
 > ✨ **Boldify** is a simple, lightweight Chrome extension designed to improve readability.
