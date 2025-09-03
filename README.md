@@ -14,7 +14,7 @@ It improves readability and makes scanning text easier.
 ## 📦 Installation
 1. Clone or download this repository:
    ```bash
-   git clone https://github.com/your-username/boldify-chrome-extension.git
+   git clone https://github.com/TaeGyeong115/boldify-chrome-extension.git
    ```
 2. Open `chrome://extensions` in your Chrome browser.
 3. Enable **Developer mode**.
