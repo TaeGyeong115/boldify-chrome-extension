@@ -1,10 +1,13 @@
 {
-  "name": "chrome",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "boldify-chrome-extension",
+  "version": "1.1.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --runInBand"
   },
-  "private": true
+  "devDependencies": {
+    "jest": "^27.5.1",
+    "jest-chrome": "^0.8.0",
+    "jest-environment-jsdom": "^27.5.1"
+  }
 }

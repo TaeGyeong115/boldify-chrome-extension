@@ -45,3 +45,7 @@ chrome.runtime.onMessage.addListener((msg) => {
     if (msg?.type === "APPLY") applyBoldFirstLetters();
     if (msg?.type === "REVERT") revertBoldFirstLetters();
 });
+
+if (typeof module !== 'undefined') {
+    module.exports = { applyBoldFirstLetters, revertBoldFirstLetters };
+}
