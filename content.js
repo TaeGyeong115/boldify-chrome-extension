@@ -1,6 +1,16 @@
 const MARK = "data-bfl";
 
+function injectBflStyle(root = document) {
+    if (root.getElementById('bfl-style')) return;
+    const style = document.createElement('style');
+    style.id = 'bfl-style';
+    style.textContent = `[${MARK}]{ font-weight: 700 !important; }`;
+    document.documentElement.appendChild(style);
+}
+
 function applyBoldFirstLetters(root = document.body) {
+    injectBflStyle(document);
+
     const SKIP = new Set(["SCRIPT","STYLE","NOSCRIPT","CODE","PRE","TEXTAREA","INPUT"]);
     const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
         acceptNode(node){
@@ -16,7 +26,10 @@ function applyBoldFirstLetters(root = document.body) {
     while (walker.nextNode()) nodes.push(walker.currentNode);
 
     nodes.forEach(node => {
-        const html = node.nodeValue.replace(/(\p{L}|\p{N})/u, (m) => `<span ${MARK}>${m}</span>`);
+        const html = node.nodeValue.replace(
+            /([\p{L}\p{N}])([\p{L}\p{N}_-]*)/gu,
+            (_, first, rest) => `<span ${MARK}>${first}</span>${rest}`
+        );
         if (html === node.nodeValue) return;
         const span = document.createElement("span");
         span.innerHTML = html;
@@ -25,21 +38,12 @@ function applyBoldFirstLetters(root = document.body) {
 }
 
 function revertBoldFirstLetters(root = document.body) {
-    document.querySelectorAll(`[${MARK}]`).forEach(el => {
+    root.querySelectorAll(`[${MARK}]`).forEach(el => {
         const text = document.createTextNode(el.textContent || "");
         el.replaceWith(text);
     });
     root.normalize();
 }
-
-(async function initOnLoad(){
-    try {
-        const [{ id: tabId }] = await chrome.tabs.query({ active: true, currentWindow: true });
-        if (!tabId) return;
-        const store = await chrome.storage.local.get(`tab-${tabId}`);
-        if (store[`tab-${tabId}`]) applyBoldFirstLetters();
-    } catch (_) {}
-})();
 
 chrome.runtime.onMessage.addListener((msg) => {
     if (msg?.type === "APPLY") applyBoldFirstLetters();
