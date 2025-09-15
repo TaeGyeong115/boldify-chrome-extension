@@ -1,4 +1,4 @@
-const {applyBoldFirstLetters, revertBoldFirstLetters} = require('../content');
+const { applyBoldFirstLetters, revertBoldFirstLetters } = require('../content');
 
 describe('content.js – Boldify DOM mutations', () => {
     beforeEach(() => {
